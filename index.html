@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Living on the Edge</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+    background: black;
+    color: white;
+    font-family: Comic Sans MS, sans-serif;
+    font-size: 22px;
+    padding: 20px;
+}
+
+#output {
+    white-space: pre-wrap;
+    line-height: 1.5;
+}
+
+button, select {
+    font-size: 20px;
+    padding: 10px;
+    margin: 10px 0;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Edge Game</h2>
+
+<select id="gameSelect">
+    <option value="Normal1.txt">Scenario 1</option>
+    <option value="Normal2.txt">Scenario 2</option>
+    <option value="Normal3.txt">Scenario 3</option>
+</select>
+
+<br>
+
+<button onclick="loadGame()">START</button>
+
+<div id="output">
+Choose a game.
+<b>Normal Mode:</b> No zeroes. The game is guaranteed to end successfully. All questions have a 50/50 chance.
+<b>Hard Mode:</b> Zeroes are added (and can affect the game). The game is not guaranteed to end successfully. Questions are not always 50/50.
+</div>
+
+<br>
+
+<button onclick="nextLine()">NEXT</button>
+
+<script src="game.js"></script>
+
+</body>
+</html>
