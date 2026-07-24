@@ -1,3 +1,5 @@
+const SAVE_PREFIX = "OrgGame_";
+
 let lines = [];
 let currentLine = 0;
 let currentGame = "";
@@ -18,8 +20,8 @@ function loadGame() {
             output.textContent = "Ready.\nPress NEXT.";
 
             // Save the newly started game
-            localStorage.setItem("game", currentGame);
-            localStorage.setItem("line", currentLine);
+            localStorage.setItem(SAVE_PREFIX + "game", currentGame);
+            localStorage.setItem(SAVE_PREFIX + "line", currentLine);
 
         });
 
@@ -34,18 +36,18 @@ function nextLine() {
         currentLine++;
 
         // Save progress after every line
-        localStorage.setItem("game", currentGame);
-        localStorage.setItem("line", currentLine);
+        localStorage.setItem(SAVE_PREFIX + "game", currentGame);
+        localStorage.setItem(SAVE_PREFIX + "line", currentLine);
 
         window.scrollTo(0, document.body.scrollHeight);
 
     } else {
 
-        output.textContent += "\n\n--- END OF GAME ---";
+        output.textContent += "\n\n--- END OF JOURNEY ---";
 
         // Clear the save once the game is finished
-        localStorage.removeItem("game");
-        localStorage.removeItem("line");
+        localStorage.removeItem(SAVE_PREFIX + "game");
+        localStorage.removeItem(SAVE_PREFIX + "line");
 
     }
 
@@ -61,12 +63,12 @@ document.addEventListener("keydown", function(event){
 
 function continueGame() {
 
-    const savedGame = localStorage.getItem("game");
+    const savedGame = localStorage.getItem(SAVE_PREFIX + "game");
 
     if (!savedGame)
         return;
 
-    const savedLine = parseInt(localStorage.getItem("line")) || 0;
+    const savedLine = parseInt(localStorage.getItem(SAVE_PREFIX + "line")) || 0;
 
     currentGame = savedGame;
 
@@ -78,7 +80,7 @@ function continueGame() {
 
             lines = text.split("\n");
 
-            output.textContent = "Game restored.\nPress NEXT to continue.";
+            output.textContent = "Session restored.\nPress NEXT to continue.";
 
             currentLine = savedLine;
 
